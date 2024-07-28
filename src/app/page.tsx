@@ -122,7 +122,7 @@ export default function Home() {
         ref={infoSection}
         className="relative flex w-full flex-col items-center justify-between overflow-hidden bg-white p-8"
       >
-        <div className="relative mx-auto w-full max-w-screen-md">
+        <div className="relative z-50 mx-auto w-full max-w-screen-md">
           <h2 className="text-left text-3xl font-bold leading-tight tracking-tight text-stone-600">
             Vai acontecer na <br />
             minha <span className="text-pink-400">primeira casinha</span>!
@@ -151,8 +151,8 @@ export default function Home() {
             ></iframe>
             <BorderBeam />
           </div>
-          <div className="absolute left-3/4 top-6 z-10 h-72 w-72 rounded-full bg-red-500 opacity-20 blur-3xl"></div>
-          <div className="absolute right-1/2 top-16 z-10 h-56 w-56 bg-pink-500 opacity-30 blur-3xl"></div>
+          <div className="pointer-events-none absolute left-3/4 top-6 z-10 h-72 w-72 rounded-full bg-red-500 opacity-20 blur-3xl"></div>
+          <div className="pointer-events-none absolute right-1/2 top-16 z-10 h-56 w-56 bg-pink-500 opacity-30 blur-3xl"></div>
         </div>
         <AnimatedGradientText
           onClick={() => scrollTo(infoSection)}
@@ -168,7 +168,7 @@ export default function Home() {
           </span>
           <ChevronRight className="ml-1 size-3 transition-transform duration-300 ease-in-out group-hover:translate-x-0.5" />
         </AnimatedGradientText>
-        <DotPattern />
+        <DotPattern className="z-0" />
       </section>
     </main>
   );
