@@ -1,7 +1,14 @@
 'use client';
 
 import { zodResolver } from '@hookform/resolvers/zod';
-import { ChevronRight, LoaderCircle, Plus, Trash } from 'lucide-react';
+import {
+  CheckIcon,
+  ChevronRight,
+  Copy,
+  LoaderCircle,
+  Plus,
+  Trash,
+} from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
 import {
@@ -16,6 +23,7 @@ import { useHookFormMask } from 'use-mask-input';
 import { z } from 'zod';
 
 import { AnimatedGradientText } from '@/components/magicui/animated-gradient-text';
+import { AnimatedStatusButton } from '@/components/magicui/animated-subscribe-button';
 import { BorderBeam } from '@/components/magicui/border-beam';
 import { DotPattern } from '@/components/magicui/dot-pattern';
 import { Meteors } from '@/components/magicui/meteors';
@@ -32,6 +40,7 @@ import {
   navigationMenuTriggerStyle,
 } from '@/components/ui/navigation-menu';
 import { data } from '@/config/data';
+import { useClipboard } from '@/hooks/use-clipboard';
 import { useConfetti } from '@/hooks/use-confetti';
 import { ConfirmationTypeEnum } from '@/lib/constants';
 import { dayjs } from '@/lib/dayjs';
@@ -40,6 +49,7 @@ import { API } from '@/services/api';
 
 import babySvg from '../assets/baby.svg';
 import catSvg from '../assets/cat.svg';
+import qrCodeSvg from '../assets/qr-code.svg';
 import unicornSvg from '../assets/unicorn.svg';
 
 const confirmationType = String(
@@ -79,6 +89,7 @@ export default function Home() {
   const formSection = useRef<HTMLElement>(null);
   const listSection = useRef<HTMLElement>(null);
 
+  const { copyContent } = useClipboard();
   const [isLoading, setIsLoading] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [isError, setIsError] = useState(false);
@@ -220,8 +231,8 @@ export default function Home() {
                 className="w-full max-w-md"
               />
 
-              <div className="absolute right-1/2 top-6 h-72 w-72 rounded-full bg-red-500 opacity-30 blur-3xl"></div>
-              <div className="absolute left-3/4 top-16 h-56 w-56 rounded-full bg-pink-500 opacity-30 blur-3xl"></div>
+              <div className="pointer-events-none absolute right-1/2 top-6 h-72 w-72 rounded-full bg-red-500 opacity-30 blur-3xl"></div>
+              <div className="pointer-events-none absolute left-3/4 top-16 h-56 w-56 rounded-full bg-pink-500 opacity-30 blur-3xl"></div>
             </div>
           </div>
         </div>
@@ -454,26 +465,66 @@ export default function Home() {
           ref={listSection}
           className="relative flex w-full flex-col items-center overflow-hidden bg-gradient-to-b from-white to-pink-50 p-8"
         >
-          <h2 className="mb-3 text-center text-3xl font-bold leading-tight tracking-tight text-stone-600">
-            Essa é a <span className="text-pink-400">listinha</span> que eu
-            fiz...
-          </h2>
-          <p className="mt-4 max-w-md text-center text-lg text-stone-600">
-            É só clicar nesse{' '}
-            <span className="text-pink-400">
-              {' '}
-              quadrado pequenininho e discreto{' '}
-            </span>{' '}
-            aqui embaixo que ele vai te levar pra uma lista que eu tenho certeza
-            que você vai achar <span className="text-pink-400">bem legal</span>!
-          </p>
-          <Link href={data.giftsListUrl}>
-            <NeonGradientCard className="mt-6 max-w-xs items-center justify-center text-center">
-              <span className="z-10 h-full cursor-pointer whitespace-pre-wrap bg-gradient-to-br from-pink-500 from-35% to-sky-500 bg-clip-text text-center text-2xl font-bold leading-none tracking-tighter text-transparent">
-                Minha lista de presentes
-              </span>
-            </NeonGradientCard>
-          </Link>
+          <div className="relative flex max-w-md flex-col justify-center">
+            <h2 className="mb-3 text-center text-3xl font-bold leading-tight tracking-tight text-stone-600">
+              Essa é a <span className="text-pink-400">listinha</span> que eu
+              fiz...
+            </h2>
+            <p className="mt-4 max-w-md text-center text-lg text-stone-600">
+              É só clicar nesse{' '}
+              <span className="text-pink-400">
+                quadrado pequenininho e discreto
+              </span>{' '}
+              aqui embaixo que ele vai te levar pra uma lista que eu tenho
+              certeza que você vai achar{' '}
+              <span className="text-pink-400">bem legal</span>!
+            </p>
+            <Link href={data.giftsListUrl}>
+              <NeonGradientCard className="mt-6 items-center justify-center text-center">
+                <span className="z-10 h-full cursor-pointer whitespace-pre-wrap bg-gradient-to-br from-pink-500 from-35% to-sky-500 bg-clip-text text-center text-2xl font-bold leading-none tracking-tighter text-transparent">
+                  Minha lista de presentes
+                </span>
+              </NeonGradientCard>
+            </Link>
+            <p className="mt-4 max-w-md text-center text-lg text-stone-600">
+              Ou você pode trazer{' '}
+              <span className="text-pink-400">o presente que quiser</span> pro
+              evento! 😆
+            </p>
+            <h3 className="mt-6 text-center text-xl font-bold leading-tight tracking-tight text-stone-600">
+              Mas se você preferir, você pode mandar{' '}
+              <span className="text-pink-400">um belo pix</span>...
+            </h3>
+            <div className="relative mx-auto mt-4 w-full max-w-xs rounded-md shadow-lg">
+              <Image
+                src={qrCodeSvg}
+                alt="E o pix? Nada ainda?"
+                className="w-full rounded-md"
+              />
+              <BorderBeam />
+            </div>
+            <AnimatedStatusButton
+              className="mx-auto mt-4"
+              buttonColor="#f472b6"
+              buttonTextColor="#ffffff"
+              onClick={() => copyContent(data.pix)}
+              initialText={
+                <span className="group inline-flex items-center">
+                  <Copy className="mr-2 h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
+                  Copia e Cola
+                </span>
+              }
+              changeText={
+                <span className="group inline-flex items-center">
+                  <CheckIcon className="mr-2 h-4 w-4" />
+                  Copiado
+                </span>
+              }
+            />
+            <span className="mx-auto mt-4 text-xs italic text-stone-400">
+              &ldquo;E o pix? Nada ainda?&rdquo;
+            </span>
+          </div>
         </section>
       )}
       <footer className="flex items-center justify-center p-4">
