@@ -34,5 +34,5 @@ export const data = {
   ],
   giftsListUrl:
     'https://www.amazon.com.br/baby-reg/amanda-lira-alexsander-lira-novembro-2024-osasco/10OGI99EXGDS8?ref_=cm_sw_r_apin_dp_H0815V8EQ5ABMA0ZGG79&language=en_US',
-  pix: '00020126920014BR.GOV.BCB.PIX01363170213e-dbe9-4677-a7e1-1eac037c1f140230Os papais da Carol agradecem 35204000053039865802BR5925Alexsander Macedo de Lira6009SAO PAULO62140510OR07ljnuaX6304F510',
+  pix: '00020126900014BR.GOV.BCB.PIX01363170213e-dbe9-4677-a7e1-1eac037c1f140228Os papais da Carol agradecem5204000053039865802BR5925Alexsander Macedo de Lira6009SAO PAULO62140510zsKRN8ujC063047456',
 };
