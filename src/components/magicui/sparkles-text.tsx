@@ -61,7 +61,7 @@ interface SparklesTextProps {
   };
 }
 
-const SparklesText: React.FC<SparklesTextProps> = ({
+export const SparklesText: React.FC<SparklesTextProps> = ({
   text,
   colors = { first: '#9E7AFF', second: '#FE8BBB' },
   className,
@@ -149,5 +149,3 @@ const Sparkle: React.FC<Sparkle> = ({ id, x, y, color, delay, scale }) => {
     </motion.svg>
   );
 };
-
-export default SparklesText;

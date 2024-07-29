@@ -53,5 +53,3 @@ export function DotPattern({
     </svg>
   );
 }
-
-export default DotPattern;
