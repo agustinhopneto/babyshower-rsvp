@@ -6,7 +6,7 @@ export const data = {
     title: 'Meu Rolê | Carolina Lira',
     location: 'na minha primeira casinha',
     address:
-      'R. Prof. Luis Eulálio de Bueno Vidigal, 137 - Centro, Osasco - SP, 06093-085',
+      'R. Prof. Luis Eulálio de Bueno Vidigal, 137 - Centro, Osasco - SP, 06093-085 (Salão de Festas)',
     mapsFrame:
       'https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d14632.890316887922!2d-46.78829658524168!3d-23.524495629770577!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94ceff386a16cb4d%3A0x4db8ae004e82ea96!2sBoulevard%20Parque%20Central!5e0!3m2!1spt-BR!2sbr!4v1721879269057!5m2!1spt-BR!2sbr',
     date: buildDayJs('2024-09-14', '18:00:00'),

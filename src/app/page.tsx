@@ -219,7 +219,8 @@ export default function Home() {
               </h1>
 
               <p className="text-center text-base text-stone-500 lg:text-lg">
-                Eu sou a <span className="text-pink-400">Carolina Lira</span>{' '}
+                Eu sou a{' '}
+                <span className="text-pink-400">Carolina Cunha Lira</span>{' '}
                 (Carolira pros íntimos) e gostaria de lhe fazer um convite para
                 um evento muito especial...
                 <br /> <strong>meu chá de bebê</strong>!
